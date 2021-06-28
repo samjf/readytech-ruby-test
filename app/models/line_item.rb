@@ -1,5 +1,5 @@
+# frozen_string_literal: true
+
 class LineItem
-  def initialize
-    
-  end
+  def initialize; end
 end
