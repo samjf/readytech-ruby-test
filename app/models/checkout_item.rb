@@ -2,6 +2,9 @@
 
 require 'bigdecimal'
 
+###
+# Represents and wraps the products that are in the sale cart
+###
 class CheckoutItem
   attr_accessor :price, :quantity, :product
 
