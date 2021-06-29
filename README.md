@@ -10,3 +10,6 @@ This app will read all CSV files under `$projectRoot/input/*.csv` and print the 
  ## How to run the code
 Using the Ruby interpreter you can run the app from the root project dir as follows:
 ```ruby main.rb```
+
+## How to run the test suite
+After finishing the project setup you can run: `rspec` from the project root dir.
