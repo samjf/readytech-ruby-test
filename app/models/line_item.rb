@@ -2,6 +2,10 @@
 
 require_relative '../helpers/tax_rates'
 
+###
+# A single line item for a Receipt.
+#  - accepts a `CheckoutItem` as input
+###
 class LineItem
   attr_accessor :quantity, :product, :price, :type, :rate
 

@@ -7,7 +7,7 @@ class CheckoutItem
 
   def initialize(price: BigDecimal('0.00'), quantity: 0, product: nil)
     @price = BigDecimal(price)
-    @quantity = quantity
+    @quantity = BigDecimal(quantity)
     @product = product
   end
 
