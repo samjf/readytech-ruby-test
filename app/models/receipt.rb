@@ -40,6 +40,6 @@ class Receipt
   # accepts a big decimal and converts to a string
   ###
   def format_currency(amount)
-    sprintf("%.2f", amount)
+    format('%.2f', amount)
   end
 end

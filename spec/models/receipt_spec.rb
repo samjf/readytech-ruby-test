@@ -7,7 +7,7 @@ RSpec.describe Receipt do
     [
       CheckoutItem.new(price: '12.49', quantity: 1, product: 'book'),
       CheckoutItem.new(price: '14.99', quantity: 1, product: 'music CD'),
-      CheckoutItem.new(price: '0.85', quantity: 1, product: 'chocolate bar'),
+      CheckoutItem.new(price: '0.85', quantity: 1, product: 'chocolate bar')
     ]
   end
 
@@ -55,7 +55,6 @@ RSpec.describe Receipt do
     end
 
     context 'with set two of testing data' do
-
       subject { described_class.new(checkout_items_set_two) }
 
       it 'should correctly match expected display output' do
@@ -70,7 +69,6 @@ RSpec.describe Receipt do
     end
 
     context 'with set three of testing data' do
-
       subject { described_class.new(checkout_items_set_three) }
 
       it 'should correctly match expected display output' do
@@ -79,7 +77,7 @@ RSpec.describe Receipt do
           1, bottle of perfume, 20.89
           1, packet of headache pills, 9.75
           1, imported box of chocolates, 11.85
-          
+
           Sales Taxes: 6.70
           Total: 74.68
         EXPECTED_OUTPUT
