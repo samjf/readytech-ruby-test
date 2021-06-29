@@ -5,7 +5,8 @@ require 'bigdecimal'
 RSpec.describe LineItem do
   let(:checkout_item_misc) { CheckoutItem.new(price: '14.99', product: 'misc product', quantity: 1) }
   let(:checkout_item_exempt) { CheckoutItem.new(price: '12.55', product: 'chocolate milk', quantity: 1) }
-  let(:checkout_item_imported) { CheckoutItem.new(price: '12.55', product: 'imported cheese', quantity: 1) }
+  let(:checkout_item_imported) { CheckoutItem.new(price: '12.55', product: 'imported chocolate', quantity: 1) }
+  let(:checkout_item_standard_imported) { CheckoutItem.new(price: '12.55', product: 'imported perfume', quantity: 1) }
   subject { described_class.new(checkout_item_misc) }
 
   describe '#total_excl_tax' do
@@ -53,12 +54,24 @@ RSpec.describe LineItem do
     context 'given a imported product' do
       subject { described_class.new(checkout_item_imported) }
 
-      it 'should have type set to imported tax rate' do
-        expect(subject.type).to eq(:IMPORTED)
+      it 'should have imported flag set' do
+        expect(subject.imported?).to be_truthy
       end
 
       it 'should have the rate set to imported rate decimal format' do
         expect(subject.rate).to eq(BigDecimal('0.05'))
+      end
+    end
+
+    context 'given a standard rate imported product' do
+      subject { described_class.new(checkout_item_standard_imported) }
+
+      it 'should have imported flag set' do
+        expect(subject.imported?).to be_truthy
+      end
+
+      it 'should have the rate set to imported rate decimal format' do
+        expect(subject.rate).to eq(BigDecimal('0.15'))
       end
     end
   end
