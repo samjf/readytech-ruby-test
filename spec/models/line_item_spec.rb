@@ -3,11 +3,28 @@
 require 'app_helper'
 require 'bigdecimal'
 RSpec.describe LineItem do
-  let(:checkout_item_misc) { CheckoutItem.new(price: '10.55', product: 'misc product', quantity: 1) }
+  let(:checkout_item_misc) { CheckoutItem.new(price: '14.99', product: 'misc product', quantity: 1) }
   let(:checkout_item_exempt) { CheckoutItem.new(price: '12.55', product: 'chocolate milk', quantity: 1) }
   let(:checkout_item_imported) { CheckoutItem.new(price: '12.55', product: 'imported cheese', quantity: 1) }
+  subject { described_class.new(checkout_item_misc) }
 
-  describe '#total' do
+  describe '#total_excl_tax' do
+    it 'should total the line item price considering the quantity' do
+      subject.quantity = 2
+      expect(subject.total_excl_tax).to eq(BigDecimal('29.98'))
+    end
+  end
+
+  describe '#total_incl_tax' do
+    it 'should total the line item price considering the quantity' do
+      expect(subject.total_incl_tax).to eq(BigDecimal('16.49'))
+    end
+  end
+
+  describe '#sales_tax' do
+    it 'should calculate the tax on the total item price' do
+      expect(subject.sales_tax).to eq(BigDecimal('1.50'))
+    end
   end
 
   describe '#new' do

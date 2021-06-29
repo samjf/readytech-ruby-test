@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'csv'
-require File.expand_path('app/models/checkout_item')
+require_relative 'app/models/checkout_item'
 
 def main
   Dir[File.expand_path('input/*.csv')].each do |input_file|

@@ -12,4 +12,16 @@ class LineItem
     @type = TaxRates.determine_tax_type(@product)
     @rate = TaxRates::RATES[@type][:rate]
   end
+
+  def total_excl_tax
+    @quantity * @price
+  end
+
+  def sales_tax
+    (total_excl_tax * @rate).round(2)
+  end
+
+  def total_incl_tax
+    total_excl_tax + sales_tax
+  end
 end
